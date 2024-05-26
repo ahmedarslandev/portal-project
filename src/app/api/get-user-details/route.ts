@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
         status: 401,
       });
     }
+    console.log(token);
     const { id } = jwt.decode(token.value as any) as JwtPayload;
 
     const user = await userModel.findById(id);
