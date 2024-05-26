@@ -28,7 +28,7 @@ const LeftPanel = () => {
         <h1 className=" w-full h-[1px] bg-zinc-500"></h1>
         <div className="flex flex-col text-white">
           {["Details", "Configuration", "Settings", "Contact"].map((e, i) => (
-            <Link href={`/profile/${e.toLocaleLowerCase()}`}>
+            <Link key={i} href={`/profile/${e.toLocaleLowerCase()}`}>
               <div
                 key={i}
                 className={`w-full h-14 flex justify-start ${

@@ -21,7 +21,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { newPasswordSchema } from "@/schemas/newPassword.schema";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { toast } = useToast();
@@ -145,4 +145,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

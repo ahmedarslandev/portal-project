@@ -1,7 +1,7 @@
 import LeftPanel from "@/uiComponents/LeftPanel";
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
-const layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex">
       <LeftPanel />
@@ -14,4 +14,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default layout;
+export default Layout;

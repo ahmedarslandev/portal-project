@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [OTP, setOTP] = useState("");
   const router = useRouter();
@@ -88,4 +88,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

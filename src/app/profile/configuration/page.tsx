@@ -8,7 +8,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
 import { CheckIcon, CrossIcon, Loader2 } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setUserDetails] = useState<User>(Object);
   const { toast } = useToast();
@@ -88,7 +88,10 @@ const page = () => {
             {userDetails?.callerIds?.length > 0 ? (
               userDetails.callerIds.map((e: callerId, i) =>
                 e.isAvailable ? (
-                  <div className="w-full h-14 flex px-3  items-center text-white select-none font-semibold cursor-pointer  hover:bg-zinc-900 text-sm border-t-[1px] border-zinc-500">
+                  <div
+                    key={i}
+                    className="w-full h-14 flex px-3  items-center text-white select-none font-semibold cursor-pointer  hover:bg-zinc-900 text-sm border-t-[1px] border-zinc-500"
+                  >
                     <h1
                       key={i}
                       className="text-white  w-1/6 text-sm text-center font-semibold"
@@ -131,7 +134,10 @@ const page = () => {
                     </h1>
                   </div>
                 ) : (
-                  <div className="w-full h-14 flex px-3 opacity-45 relative  items-center text-white select-none font-semibold  text-sm border-t-[1px] border-zinc-500">
+                  <div
+                    key={i}
+                    className="w-full h-14 flex px-3 opacity-45 relative  items-center text-white select-none font-semibold  text-sm border-t-[1px] border-zinc-500"
+                  >
                     <div className=" w-full h-[2px] bg-red-600 absolute top-1/2 left-0"></div>
                     <h1
                       key={i}
@@ -190,4 +196,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

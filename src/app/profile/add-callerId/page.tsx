@@ -7,7 +7,7 @@ import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handelSubmit = async (e: any) => {
@@ -90,4 +90,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

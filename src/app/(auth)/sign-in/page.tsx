@@ -22,7 +22,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { toast } = useToast();
@@ -136,7 +136,7 @@ const page = () => {
                   )}
                 </Button>
                 <p className="ml-1 text-[12px] text-white">
-                  Don't have an account{" "}
+                  Dont have an account
                   <Link
                     className="text-[14px] text-blue-500 underline"
                     href={"/sign-up"}
@@ -161,4 +161,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

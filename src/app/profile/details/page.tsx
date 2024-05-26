@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Copy, CheckIcon, CrossIcon } from "lucide-react";
 import { User, callerId } from "@/models/models";
 
-const page = () => {
+const Page = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setUserDetails] = useState<User>(Object);
   const { toast } = useToast();
@@ -121,7 +121,10 @@ const page = () => {
               </div>
               {userDetails.callerIds.length > 0 ? (
                 userDetails.callerIds.map((e: callerId, i) => (
-                  <div className="w-full h-14 flex px-3  items-center text-white select-none font-semibold cursor-pointer  hover:bg-zinc-900 text-sm border-t-[1px] border-zinc-500">
+                  <div
+                    key={i}
+                    className="w-full h-14 flex px-3  items-center text-white select-none font-semibold cursor-pointer  hover:bg-zinc-900 text-sm border-t-[1px] border-zinc-500"
+                  >
                     <h1
                       key={i}
                       className="text-white  w-1/5 text-sm text-center font-semibold"
@@ -173,4 +176,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
