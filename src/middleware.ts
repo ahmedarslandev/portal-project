@@ -5,14 +5,14 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 }
-export const config = {
-  matcher: [
-    "/",
-    "/home",
-    "/profile",
-    "/add-state",
-    "/add-callerId",
-    "/loop-states",
-    "/profile:path*",
-  ],
-};
+// export const config = {
+//   matcher: [
+//     // "/",
+//     // "/home",
+//     // "/profile",
+//     // "/add-state",
+//     // "/add-callerId",
+//     // "/loop-states",
+//     // "/profile:path*",
+//   ],
+// };
