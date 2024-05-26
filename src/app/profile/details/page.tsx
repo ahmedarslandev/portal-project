@@ -15,12 +15,11 @@ const Page = () => {
     setIsLoading(true);
     alert("Loading...");
     const res = axios.get("/api/get-user-details");
-    alert(res);
     res.then((response) => {
       const data = response.data;
       setUserDetails(data);
-      return;
     });
+    alert(userDetails);
     res.catch((error) => {
       console.log(error);
       return;
