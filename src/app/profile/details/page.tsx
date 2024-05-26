@@ -13,9 +13,7 @@ const Page = () => {
   const { toast } = useToast();
   useEffect(() => {
     setIsLoading(true);
-    const res = axios.get(
-      "https://portal-project-egzjnztrc-ahmed-arslans-projects.vercel.app/api/get-user-details"
-    );
+    const res = axios.get("/api/get-user-details");
     res.then((response) => {
       const data = response.data;
       setUserDetails(data);

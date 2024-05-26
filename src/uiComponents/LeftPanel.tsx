@@ -14,7 +14,7 @@ const LeftPanel = () => {
   const { toast } = useToast();
   return (
     <>
-      <div className="flex relative flex-col w-[20%] bg-[#27272A] h-screen">
+      <div className="flex relative flex-col w-[20%] bg-green-500 h-screen">
         <div className="flex h-1/6 justify-start gap-3 p-5 items-center">
           <div className="w-[3vw] h-[3vw] flex items-center justify-center text-lg font-bold bg-green-600 rounded-full">
             A
