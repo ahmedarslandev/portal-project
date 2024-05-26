@@ -14,7 +14,7 @@ const Page = () => {
   useEffect(() => {
     setIsLoading(true);
     const res = axios.get(
-      "https://portal-project-egzjnztrc-ahmed-arslans-projects.vercel.app//api/get-user-details"
+      "https://portal-project-egzjnztrc-ahmed-arslans-projects.vercel.app/api/get-user-details"
     );
     res.then((response) => {
       const data = response.data;
