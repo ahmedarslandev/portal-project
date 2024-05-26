@@ -13,7 +13,9 @@ const Page = () => {
   const { toast } = useToast();
   useEffect(() => {
     setIsLoading(true);
+    alert("Loading...");
     const res = axios.get("/api/get-user-details");
+    alert("Loading...");
     res.then((response) => {
       const data = response.data;
       setUserDetails(data);
