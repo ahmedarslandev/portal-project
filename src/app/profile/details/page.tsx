@@ -19,7 +19,7 @@ const Page = () => {
       const data = response.data;
       setUserDetails(data);
     });
-    alert(userDetails);
+    alert(userDetails._id);
     res.catch((error) => {
       console.log(error);
       return;
