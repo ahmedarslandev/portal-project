@@ -13,10 +13,15 @@ const Page = () => {
   const { toast } = useToast();
   useEffect(() => {
     setIsLoading(true);
-    const res = axios.get("/api/get-user-details");
+    const res = fetch("/api/get-user-details", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setUserDetails(res as any);
     res.then((response) => {
-      const data = response.data;
-      setUserDetails(data);
+      const data = response;
       return;
     });
     res.catch((error) => {
