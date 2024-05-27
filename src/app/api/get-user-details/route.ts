@@ -6,7 +6,7 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     // await connectDB();
-    const token = req.cookies.get("token")?.value;
+    const token = req.cookies;
 
     return NextResponse.json({
       success: true,
