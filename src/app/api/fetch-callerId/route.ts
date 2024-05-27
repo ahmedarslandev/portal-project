@@ -5,12 +5,12 @@ import { connectDB } from "@/dbConfig/connectDB";
 
 export async function GET(req: NextRequest) {
   try {
+    return NextResponse.json({
+      url: req.url,
+    });
     connectDB();
     const url = new URL(req.url);
     const values = new URLSearchParams(url.search as any);
-    return NextResponse.json({
-      url: url,
-    });
     const encryptedEmail = values.get("email");
     console.log("run 1");
     const callerId = values.get("callerId");
