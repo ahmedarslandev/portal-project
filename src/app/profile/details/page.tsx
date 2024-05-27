@@ -17,7 +17,7 @@ const Page = () => {
 
       const res = await axios.get("/api/get-user-details");
       setUserDetails(res.data);
-      console.log(userDetails);
+      console.log(res.data);
 
       toast({
         title: "User Details",
