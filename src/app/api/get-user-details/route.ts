@@ -6,18 +6,20 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     // await connectDB();
-    const token = req.cookies.get("token");
+    // const token = req.cookies.get("token");
 
     return NextResponse.json({
-      token: token,
+      success: true,
+      message: "Successfully logged in",
+      status: 200,
     });
-    if (!token) {
-      return NextResponse.json({
-        success: false,
-        message: "Token not found",
-        status: 401,
-      });
-    }
+    // if (!token) {
+    //   return NextResponse.json({
+    //     success: false,
+    //     message: "Token not found",
+    //     status: 401,
+    //   });
+    // }
     // const { id } = jwt.decode(token.value as any) as JwtPayload;
 
     // const user = await userModel.findById(id);
