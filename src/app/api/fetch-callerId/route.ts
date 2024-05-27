@@ -9,15 +9,10 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url);
     const values = new URLSearchParams(url.search as any);
     const encryptedEmail = values.get("email");
-    console.log("run 1");
     const callerId = values.get("callerId");
-    console.log("run 1");
     const userCode = callerId?.trim().substring(0, 3);
-    console.log("run 1");
     const { email } = jwt.decode(encryptedEmail as any) as JwtPayload;
-    console.log("run 1");
     const user = await userModel.findOne({ email: email });
-    console.log("run 1");
     if (!user) {
       return NextResponse.json({
         message: "user not found",
