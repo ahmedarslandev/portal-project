@@ -108,16 +108,14 @@ const Page = () => {
                 Your CallerIds
               </h1>
               <div className="flex  items-center px-3 py-1">
-                {["callerID", "State", "Counts", "Owner", "IsAvailable"].map(
-                  (e, i) => (
-                    <h1
-                      key={i}
-                      className="text-white w-1/5 text-center  rounded text-sm font-semibold "
-                    >
-                      {e}
-                    </h1>
-                  )
-                )}
+                {["callerID", "State", "Counts", "Copy"].map((e, i) => (
+                  <h1
+                    key={i}
+                    className="text-white w-1/4 text-center  rounded text-sm font-semibold "
+                  >
+                    {e}
+                  </h1>
+                ))}
               </div>
               {userDetails.callerIds.length > 0 ? (
                 userDetails.callerIds.map((e: callerId, i) => (
@@ -127,38 +125,43 @@ const Page = () => {
                   >
                     <h1
                       key={i}
-                      className="text-white  w-1/5 text-sm text-center font-semibold"
+                      className="text-white  w-1/4 text-sm text-center font-semibold"
                     >
                       {e.Number}
                     </h1>
                     <h1
                       key={i}
-                      className="text-white  w-1/5 text-sm text-center font-semibold"
+                      className="text-white  w-1/4 text-sm text-center font-semibold"
                     >
                       {e.state}
                     </h1>
                     <h1
                       key={i}
-                      className="text-white  w-1/5 text-sm text-center font-semibold"
+                      className="text-white  w-1/4 text-sm text-center font-semibold"
                     >
                       {e.counts}
                     </h1>
-                    <h1
+
+                    <Copy
                       key={i}
-                      className="text-white  w-1/5 text-sm text-center font-semibold"
-                    >
-                      {userDetails.username}
-                    </h1>
-                    <h1
-                      key={i}
-                      className="text-white  w-1/5  flex justify-center items-center text-sm text-center font-semibold"
-                    >
-                      {e.isAvailable ? (
-                        <CheckIcon className=" text-green-500 " />
-                      ) : (
-                        <CrossIcon className=" text-red-500 rotate-45" />
-                      )}
-                    </h1>
+                      onClick={() => {
+                        navigator.clipboard
+                          .writeText(e?.Number)
+                          .then(() => {
+                            toast({
+                              title: "User Details",
+                              description: "Caller Id copied successfully",
+                            });
+                          })
+                          .catch(() => {
+                            toast({
+                              title: "User Details",
+                              description: "Failed to copy API Key",
+                            });
+                          });
+                      }}
+                      className="text-white flex justify-center hover:opacity-40 active:scale-75 items-center w-1/4 text-sm text-center font-semibold"
+                    />
                   </div>
                 ))
               ) : (
