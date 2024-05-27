@@ -5,7 +5,7 @@ import { connectDB } from "@/dbConfig/connectDB";
 
 export async function GET(req: NextRequest) {
   try {
-    connectDB();
+    await connectDB();
     const url = new URL(req.url);
     const values = new URLSearchParams(url.search as any);
     const encryptedEmail = values.get("email");

@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
   try {
     await connectDB();
     const { email, password } = await req.json();
-
     if (!email && !password) {
       return NextResponse.json({
         message: "Email and password are required",
@@ -31,6 +30,8 @@ export async function POST(req: NextRequest) {
         status: 400,
       });
     }
+
+    console.log(password, user);
     const isMatch = await bcrypt.compare(password, user.password);
     cookies().delete("email");
     if (!isMatch) {
@@ -46,12 +47,7 @@ export async function POST(req: NextRequest) {
     const token = jwt.sign(data, process.env.JWT_TOKEN_SECRET as any, {
       expiresIn: "1d",
     });
-
-    await cookies().set("token", token, {
-      secure: true,
-      httpOnly: true,
-      sameSite: "strict",
-    });
+    await cookies().set("token", token);
 
     return NextResponse.json({
       message: "User logged in successfully",

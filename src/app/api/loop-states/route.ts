@@ -2,9 +2,11 @@ import { userModel } from "@/models/models";
 import { StateModel } from "@/models/models";
 import { NextRequest, NextResponse } from "next/server";
 import { states } from "./states";
+import { connectDB } from "@/dbConfig/connectDB";
 
 export async function POST(req: NextRequest) {
   try {
+    await connectDB();
     const { userId } = await req.json();
     const user = await userModel.findOne({ _id: userId });
     if (!user?.isAdmin === true) {

@@ -117,7 +117,7 @@ const Page = () => {
                   </h1>
                 ))}
               </div>
-              {userDetails.callerIds.length > 0 ? (
+              {userDetails?.callerIds?.length > 0 ? (
                 userDetails.callerIds.map((e: callerId, i) => (
                   <div
                     key={i}

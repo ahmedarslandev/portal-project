@@ -13,6 +13,6 @@ export const config = {
     "/add-state",
     "/add-callerId",
     "/loop-states",
-    "/profile:path*",
+    "/profile/:path*",
   ],
 };

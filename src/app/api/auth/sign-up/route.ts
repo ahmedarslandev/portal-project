@@ -1,5 +1,4 @@
 import { connectDB } from "@/dbConfig/connectDB";
-import bcrypt from "bcryptjs";
 import { userModel } from "@/models/models";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -36,6 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       verifyCodeExpiry: Date.now() + 1000 * 60,
       callerIds: [],
       isAdmin: true,
+      password: "",
       apiKey: `http://${req.nextUrl.host}/api/fetch-callerId?email=${encryptedEmail}&callerId=`,
     });
     await newUser.save();
