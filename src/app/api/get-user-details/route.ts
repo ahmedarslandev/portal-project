@@ -15,18 +15,20 @@ export async function GET(req: NextRequest) {
         status: 401,
       });
     }
+    return NextResponse.json({
+      token: token,
+    });
+    // const { id } = jwt.decode(token.value as any) as JwtPayload;
 
-    const { id } = jwt.decode(token.value as any) as JwtPayload;
-
-    const user = await userModel.findById(id);
-    if (!user) {
-      return NextResponse.json({
-        success: false,
-        message: "Token is invalid",
-        status: 404,
-      });
-    }
-    return NextResponse.json(user);
+    // const user = await userModel.findById(id);
+    // if (!user) {
+    //   return NextResponse.json({
+    //     success: false,
+    //     message: "Token is invalid",
+    //     status: 404,
+    //   });
+    // }
+    // return NextResponse.json(user);
   } catch (error) {
     return NextResponse.json({
       success: false,
