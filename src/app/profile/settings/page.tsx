@@ -1,3 +1,5 @@
+"use client";
+
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
