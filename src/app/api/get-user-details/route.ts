@@ -7,11 +7,8 @@ import { cookies } from "next/headers";
 export async function GET(req: NextRequest) {
   try {
     await connectDB();
-    // const cookies = cookie.parse(req as any ? req.headers.cookie  || "" : document.cookie)
     const token = cookies().get("token");
-    return NextResponse.json({
-      token,
-    });
+
     if (!token) {
       return NextResponse.json({
         success: false,
