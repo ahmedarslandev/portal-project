@@ -16,7 +16,7 @@ const Page = () => {
     alert("Loading...");
     const res = axios.get("/api/get-user-details");
     res.then((response) => {
-      alert(response.data);
+      alert(response.data._id);
       const data = response.data;
       setUserDetails(data);
     });
