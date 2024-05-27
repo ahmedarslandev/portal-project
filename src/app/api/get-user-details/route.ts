@@ -2,13 +2,13 @@ import { userModel } from "@/models/models";
 import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
-import cookie from "cookie";
+import { cookies } from "next/headers";
 
 export async function GET(req: NextRequest) {
   try {
     await connectDB();
     // const cookies = cookie.parse(req as any ? req.headers.cookie  || "" : document.cookie)
-    const token = document.cookie;
+    const token = cookies().get("token");
     return NextResponse.json({
       token,
     });

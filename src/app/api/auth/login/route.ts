@@ -47,7 +47,11 @@ export async function POST(req: NextRequest) {
       expiresIn: "1d",
     });
 
-    await cookies().set("token", token);
+    await cookies().set("token", token, {
+      secure: true,
+      httpOnly: true,
+      sameSite: "strict",
+    });
 
     return NextResponse.json({
       message: "User logged in successfully",
