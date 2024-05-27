@@ -13,10 +13,8 @@ const Page = () => {
   const { toast } = useToast();
   useEffect(() => {
     setIsLoading(true);
-    alert("Loading...");
     const res = axios.get("/api/get-user-details");
     res.then((response) => {
-      alert(response.data._id);
       const data = response.data;
       setUserDetails(data);
     });
