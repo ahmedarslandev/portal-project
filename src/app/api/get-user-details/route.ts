@@ -6,12 +6,13 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     // await connectDB();
-    // const token = req.cookies.get("token");
+    const token = req.cookies.get("token")?.value;
 
     return NextResponse.json({
       success: true,
       message: "Successfully logged in",
       status: 200,
+      token: token,
     });
     // if (!token) {
     //   return NextResponse.json({
