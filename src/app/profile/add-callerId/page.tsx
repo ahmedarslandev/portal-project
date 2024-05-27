@@ -66,7 +66,7 @@ const Page = () => {
             </h1>
             <label htmlFor="callerIds"></label>
             <textarea
-              className=" rounded px-3 py-1"
+              className=" rounded bg-zinc-100 px-3 py-1"
               name="callerIds"
               placeholder="code"
             />
