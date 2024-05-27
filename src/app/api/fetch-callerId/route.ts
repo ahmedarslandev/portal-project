@@ -6,7 +6,7 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     return NextResponse.json({
-      url: req.url,
+      url: "Hello",
     });
     connectDB();
     const url = new URL(req.url);
