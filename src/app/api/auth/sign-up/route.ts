@@ -24,6 +24,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         status: 400,
       });
     }
+    console.log(req.url);
     const encryptedEmail = jwt.sign(
       { email: email },
       process.env.JWT_TOKEN_SECRET as any
@@ -35,7 +36,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       verifyCodeExpiry: Date.now() + 1000 * 60,
       callerIds: [],
       isAdmin: true,
-      apiKey: `http://localhost:3000/api/fetch-callerId?email=${encryptedEmail}&callerId=`,
+      apiKey: `http://${req.nextUrl.host}/api/fetch-callerId?email=${encryptedEmail}&callerId=`,
     });
     await newUser.save();
     setTimeout(async () => {
