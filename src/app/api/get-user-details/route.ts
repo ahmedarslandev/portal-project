@@ -5,9 +5,12 @@ import { connectDB } from "@/dbConfig/connectDB";
 
 export async function GET(req: NextRequest) {
   try {
-    await connectDB();
+    // await connectDB();
     const token = req.cookies.get("token");
 
+    return NextResponse.json({
+      token: token,
+    });
     if (!token) {
       return NextResponse.json({
         success: false,
@@ -15,9 +18,6 @@ export async function GET(req: NextRequest) {
         status: 401,
       });
     }
-    return NextResponse.json({
-      token: token,
-    });
     // const { id } = jwt.decode(token.value as any) as JwtPayload;
 
     // const user = await userModel.findById(id);
