@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     connectDB();
     const url = new URL(req.url);
