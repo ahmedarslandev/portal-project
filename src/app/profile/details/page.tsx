@@ -12,19 +12,26 @@ const Page = () => {
   const [userDetails, setUserDetails] = useState<User>(Object);
   const { toast } = useToast();
   useEffect(() => {
-    async function run() {
-      setIsLoading(true);
-
-      const res = await axios.get("/api/get-user-details");
-      setUserDetails(res.data);
-      console.log(res.data);
-
-      toast({
-        title: "User Details",
-        description: "User Details fetched successfully",
-      });
-    }
-    run();
+    setIsLoading(true);
+    alert("Loading...");
+    const res = axios.get("/api/get-user-details");
+    res.then((response) => {
+      alert(response.data._id);
+      const data = response.data;
+      setUserDetails(data);
+    });
+    console.log(userDetails);
+    res.catch((error) => {
+      console.log(error);
+      return;
+    });
+    res.finally(() => {
+      setIsLoading(false);
+    });
+    toast({
+      title: "User Details",
+      description: "User Details fetched successfully",
+    });
   }, []);
 
   return (
