@@ -2,12 +2,16 @@ import { userModel } from "@/models/models";
 import { NextRequest, NextResponse } from "next/server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
+import cookie from "cookie";
 
 export async function GET(req: NextRequest) {
   try {
     await connectDB();
-    const token = req.cookies.get("token");
-
+    // const cookies = cookie.parse(req as any ? req.headers.cookie  || "" : document.cookie)
+    const token = document.cookie;
+    return NextResponse.json({
+      token,
+    });
     if (!token) {
       return NextResponse.json({
         success: false,
@@ -15,7 +19,7 @@ export async function GET(req: NextRequest) {
         status: 401,
       });
     }
-    const { id } = jwt.decode(token.value as any) as JwtPayload;
+    const { id } = jwt.decode(token as any) as JwtPayload;
 
     const user = await userModel.findById(id);
     if (!user) {
