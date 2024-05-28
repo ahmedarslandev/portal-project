@@ -6,11 +6,10 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     connectDB();
-    const url = new URL(req.url);
-    const values = new URLSearchParams(url.search as any);
+    const url = req.nextUrl;
 
-    const encryptedEmail = values.get("email");
-    const callerId = values.get("callerId");
+    const encryptedEmail = url.searchParams.get("email");
+    const callerId = url.searchParams.get("callerId");
     const userCode = callerId?.trim().substring(0, 3);
     const { email } = jwt.decode(encryptedEmail as any) as JwtPayload;
     const user = await userModel.findOne({ email: email });
