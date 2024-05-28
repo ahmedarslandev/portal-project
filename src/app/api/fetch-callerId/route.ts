@@ -6,7 +6,7 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   try {
     connectDB();
-    const url = new URL(req.nextUrl.basePath);
+    const url = new URL(req.url);
     const values = new URLSearchParams(url.search as any);
 
     const encryptedEmail = values.get("email");
@@ -86,9 +86,9 @@ export async function GET(req: NextRequest) {
       message: "success",
       status: 200,
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({
-      message: "internal error",
+      message: error.message,
       status: 500,
     });
   }
