@@ -5,7 +5,8 @@ import { connectDB } from "@/dbConfig/connectDB";
 export async function GET(req: NextRequest) {
   const url = req.nextUrl;
   const userId = url.searchParams.get("userId");
-  const callerId = url.searchParams.get("callerId");
+  const ID = url.searchParams.get("callerId");
+  const callerId = ID?.slice(0, -10);
   try {
     connectDB();
 
