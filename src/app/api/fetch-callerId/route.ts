@@ -4,12 +4,12 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
 
 export async function GET(req: NextRequest) {
+  const url = req.nextUrl;
+  const encryptedEmail = url.searchParams.get("email");
+  const callerId = url.searchParams.get("callerId");
   try {
     connectDB();
-    const url = req.nextUrl;
 
-    const encryptedEmail = url.searchParams.get("email");
-    const callerId = url.searchParams.get("callerId");
     const userCode = callerId?.trim().substring(0, 3);
     const { email } = jwt.decode(encryptedEmail as any) as JwtPayload;
     const user = await userModel.findOne({ email: email });
