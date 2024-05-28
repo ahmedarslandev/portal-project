@@ -15,7 +15,8 @@ const Page = () => {
     );
     res.then((response) => {
       const data = response.data;
-      setUserDetails(data);
+      setUserDetails(response.data);
+      console.log(data);
     });
     console.log(userDetails);
     res.catch((error) => {
