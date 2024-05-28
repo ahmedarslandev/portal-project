@@ -3,10 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function GET(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       await connectDB();
