@@ -1,55 +1,45 @@
 "use client";
 import { toast } from "@/components/ui/use-toast";
+import { User } from "@/models/models";
 import axios from "axios";
-import React, { useEffect } from "react";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import React, { useEffect, useState } from "react";
 
 interface Res {
   message: string;
   callerId?: string;
 }
 
-interface PageProps {
-  userDetails: Res;
-}
-
-const Page = ({ userDetails }: PageProps) => {
+const Page = () => {
+  const [userDetails, setUserDetails] = useState<Res>();
+  const run = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/fetch-callerId?email=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkYXJzbGFuYXJzbGFuOTFAZ21haWwuY29tIiwiaWF0IjoxNzE2ODUzMDUxfQ.PqiuH-DsSWMcy4tDJqrGMfI1MwHZwhCeVTqGr0Xs0HI&callerId=20935632563`
+      );
+      setUserDetails(response.data);
+    } catch (error) {
+      return {};
+    }
+  };
   useEffect(() => {
+    run();
     toast({
       title: "User Details",
       description: "User Details fetched successfully",
     });
-  }, []);
+  }, [userDetails]);
 
   return (
     <div>
       <div>hello</div>
-      <div>{userDetails.message}</div>
-      {userDetails.callerId && <div>Caller ID: {userDetails.callerId}</div>}
+      <div>{userDetails?.message}</div>
+      {userDetails?.callerId && <div>Caller ID: {userDetails?.callerId}</div>}
     </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/fetch-callerId?email=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkYXJzbGFuYXJzbGFuOTFAZ21haWwuY29tIiwiaWF0IjoxNzE2ODUzMDUxfQ.PqiuH-DsSWMcy4tDJqrGMfI1MwHZwhCeVTqGr0Xs0HI&callerId=20935632563`
-    );
-    return {
-      props: {
-        userDetails: response.data,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        userDetails: {
-          message: "Error fetching data",
-        },
-      },
-    };
-  }
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+
+// };
 
 export default Page;
