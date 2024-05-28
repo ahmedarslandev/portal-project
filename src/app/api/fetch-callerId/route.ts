@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
       state: state[0].stateName,
       owner: user._id,
     });
-
+    console.log(user._id);
     if (!IDs || IDs.length <= 0) {
       return NextResponse.json({
         success: false,
