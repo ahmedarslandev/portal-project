@@ -2,6 +2,7 @@
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import React, { useEffect } from "react";
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
 interface Res {
   message: string;
@@ -29,10 +30,10 @@ const Page = ({ userDetails }: PageProps) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const response = await axios.get(
-      "https://testing-dun-pi.vercel.app/api/fetch-callerId?email=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkYXJzbGFuYXJzbGFuOTFAZ21haWwuY29tIiwiaWF0IjoxNzE2ODUzMDUxfQ.PqiuH-DsSWMcy4tDJqrGMfI1MwHZwhCeVTqGr0Xs0HI&callerId=20935632563"
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/fetch-callerId?email=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFobWVkYXJzbGFuYXJzbGFuOTFAZ21haWwuY29tIiwiaWF0IjoxNzE2ODUzMDUxfQ.PqiuH-DsSWMcy4tDJqrGMfI1MwHZwhCeVTqGr0Xs0HI&callerId=20935632563`
     );
     return {
       props: {
