@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
   const url = req.nextUrl;
   const userId = url.searchParams.get("userId");
   const ID = url.searchParams.get("callerId");
-  const callerId = ID?.slice(0, -10);
+  const callerId = ID?.slice(-10);
   try {
     connectDB();
 
