@@ -85,9 +85,9 @@ export async function GET(req: NextRequest) {
       message: "success",
       status: 200,
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({
-      message: "internal error",
+      message: error?.message,
       status: 500,
     });
   }
