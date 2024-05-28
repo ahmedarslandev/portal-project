@@ -1,18 +1,16 @@
 import { StateModel, callerIdModel, userModel } from "@/models/models";
 import { NextRequest, NextResponse } from "next/server";
-import jwt, { JwtPayload } from "jsonwebtoken";
 import { connectDB } from "@/dbConfig/connectDB";
 
 export async function GET(req: NextRequest) {
   const url = req.nextUrl;
-  const encryptedEmail = url.searchParams.get("email");
+  const userId = url.searchParams.get("userId");
   const callerId = url.searchParams.get("callerId");
   try {
     connectDB();
 
     const userCode = callerId?.trim().substring(0, 3);
-    const { email } = jwt.decode(encryptedEmail as any) as JwtPayload;
-    const user = await userModel.findOne({ email: email });
+    const user = await userModel.findOne({ _id: userId });
     if (!user) {
       return NextResponse.json({
         message: "user not found",
@@ -43,12 +41,11 @@ export async function GET(req: NextRequest) {
     });
 
     if (!IDs || IDs.length <= 0) {
-      return NextResponse.json({
-        success: false,
-        message:
-          "Provided user does have the related callerId , Please try another user's API Key to fetch callerId",
-        status: 400,
+      const IDs = await callerIdModel.find({
+        owner: user._id,
       });
+      const id = IDs[state[0].reqNumber].Number;
+      return new NextResponse(`${id}`);
     }
 
     const callerIdsss = IDs[state[0].reqNumber].Number;
@@ -80,11 +77,7 @@ export async function GET(req: NextRequest) {
     );
     await state[0].save();
     await id.save();
-    return NextResponse.json({
-      callerId: callerIdsss,
-      message: "success",
-      status: 200,
-    });
+    return new NextResponse(`${callerIdsss}`);
   } catch (error: any) {
     return NextResponse.json({
       message: error.message,

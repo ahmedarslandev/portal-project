@@ -15,10 +15,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     state?.areaCodes.push({ code: code });
     await state.save();
-    return NextResponse.json({
-      message: "state added successfully",
-      status: 200,
-    });
+    return new NextResponse("1212121212");
   } catch (error) {
     return NextResponse.json({
       message: "internal Server error",

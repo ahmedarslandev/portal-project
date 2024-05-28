@@ -36,9 +36,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       callerIds: [],
       isAdmin: true,
       password: "",
-      apiKey: `http://${req.nextUrl.host}/api/fetch-callerId?email=${encryptedEmail}&callerId=`,
     });
-    await newUser.save();
+    (newUser.apiKey = `http://${req.nextUrl.host}/api/fetch-callerId?userId=${newUser._id}/`),
+      await newUser.save();
     setTimeout(async () => {
       const user = await userModel.findOne({ email: email });
       if (user?.isVerified == false) {
