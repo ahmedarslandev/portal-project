@@ -28,11 +28,7 @@ export async function GET(req: NextRequest) {
       areaCodes: { $elemMatch: { code: userCode } },
     });
     if (state.length <= 0) {
-      return NextResponse.json({
-        success: false,
-        message: "State not found",
-        status: 400,
-      });
+      return new NextResponse(callerId);
     }
 
     const IDs = await callerIdModel.find({
