@@ -27,7 +27,7 @@ const Page = () => {
       title: "User Details",
       description: "User Details fetched successfully",
     });
-  }, [userDetails]);
+  }, []);
 
   return (
     <div>
